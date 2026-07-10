@@ -1,6 +1,5 @@
-#ifndef MAIN
-#define MAIN
-#include <windows.h>
+//Para ejecución en Windows quitar el comentario a la siguiente linea
+//#include <windows.h>
 #include <ctime>
 #include <limits>
 #include <chrono>
@@ -22,14 +21,16 @@ void nombreArchivoRed(string&, bool&, const string);
 void nombreArchivoVehiculos(string&);
 
 int main(){
-    SetConsoleOutputCP(CP_UTF8);
+    //Para ejecución en Windows quitar el comentario a la siguiente linea (Si se desean impresiones con UTF-8)
+    //SetConsoleOutputCP(CP_UTF8);
+    crearCarpetasNecesarias();
     HashRed hashRed(12);
     vector<Arista> aristas;
     HashVehiculos hashVh(12);
     vector<Vehiculo> vehics;
     Grafo grafo(12, true);
 
-    iniciarPorDefecto("red.csv", "vehiculos.csv", hashRed, aristas, grafo, hashVh, vehics);
+    iniciarPorDefecto(PATH_REDES + "red.csv", PATH_VEHICULOS + "vehiculos.csv", hashRed, aristas, grafo, hashVh, vehics);
 
     int opc;
 
@@ -73,7 +74,7 @@ void iniciarPorDefecto(const string nomRed, const string nomVehics, HashRed& has
     }
     //Inserción de las aristas
     for (const auto& a : aristas) {
-        grafo.agregarAristas(a.origen, a.destino, a.peso);
+        grafo.agregarAristaGrafo(a.origen, a.destino, a.peso);
     }
 
     csvVehiculos(nomVehics, hashVh, vehics);
@@ -121,7 +122,7 @@ void red_Nodos_Hash(HashRed& hashRed, vector<Arista>& aristas, Grafo& grafo){
                 }
                 //insertamos las aristas
                 for (const auto& a : aristas) {
-                    grafo.agregarAristas(a.origen, a.destino, a.peso);
+                    grafo.agregarAristaGrafo(a.origen, a.destino, a.peso);
                 }
                 cout << u8"\n\t Red cargada correctamente desde " << archivo << "\n";
                 }
@@ -235,14 +236,14 @@ void redGrafo(Grafo& grafo){
                         cout << u8"\n\t Error: uno o ambos nodos no existen.\n";
                     }else if (u == v){
                         cout << u8"\n\t Error: No se permiten bucles (u -> u).\n";
-                    }else if (grafo.existeAristas(u, v)){
+                    }else if (grafo.existeAristaGrafo(u, v)){
                         cout << u8"\n\t Ya existe una arista de " << u << " a " << v << "\n";
                         char resp;
                         cout << u8"\n\t ¿Reemplazar peso? (s/n): "; cin >> resp;
                         if (resp != 's' && resp != 'S') break;
-                        grafo.eliminarAristas(u, v);  //borra la antigua
+                        grafo.eliminarAristaGrafo(u, v);  //borra la antigua
                     }
-                    grafo.agregarAristas(u, v, w);
+                    grafo.agregarAristaGrafo(u, v, w);
                     cout << u8"\n\t Arista " << u << " -> " << v << " agregada con peso " << w << "\n";
                 }
                 break;
@@ -265,10 +266,10 @@ void redGrafo(Grafo& grafo){
                     cin >> u;
                     cout << u8"\n\t Nodo destino: "; 
                     cin >> v;
-                    if (!grafo.existeAristas(u, v)){
+                    if (!grafo.existeAristaGrafo(u, v)){
                         cout << u8"\n\t No existe arista de " << u << " -> " << v << "\n";
                     }else{
-                        grafo.eliminarAristas(u, v);
+                        grafo.eliminarAristaGrafo(u, v);
                         cout << u8"\n\t Arista " << u << " -> " << v << " eliminada correctamente.\n";
                     }
                 }
@@ -583,13 +584,13 @@ void nombreArchivoRed(string &nomArchivo, bool& saveAs, const string accion){
         else
             cout << u8"\n\n\t En qué archivo desea " << accion << ": ";
         cin >> opc;
-    }while(opc <= 0 && opc >= cont);
+    }while(opc <= 0 || opc > cont);
 
     //Construir el nombre del archivo de la red seleccionado por el usuario
     if(opc == 1)
-        nomArchivo = "red.csv";
+        nomArchivo = PATH_REDES + "red.csv";
     else
-        nomArchivo = "red" + to_string(opc) + ".csv";
+        nomArchivo = PATH_REDES + "red" + to_string(opc) + ".csv";
 
     if(accion == "agregar" || accion == "eliminar"){
         do{
@@ -597,7 +598,7 @@ void nombreArchivoRed(string &nomArchivo, bool& saveAs, const string accion){
             cout << "\n\t [2] Modificar archivo y guardar como uno nuevo.";
             cout << u8"\n\n\t Escoja una opción para guardar las modificaciones: ";
             cin >> opc;
-        }while(opc < 1 && opc > 2);
+        }while(opc < 1 || opc > 2);
 
         if(opc == 1) saveAs = false;
         else saveAs = true;
@@ -626,12 +627,11 @@ void nombreArchivoVehiculos(string &nomArchivo){
     do{
         cout << u8"\n\n\t Elija un archivo para trabajar con él: ";
         cin >> opc;
-    }while(opc <= 0 && opc >= cont);
+    }while(opc <= 0 || opc > cont);
 
     //Construir el nombre del archivo de la red seleccionado por el usuario
     if(opc == 1)
-        nomArchivo = "vehiculos.csv";
+        nomArchivo = PATH_VEHICULOS + "vehiculos.csv";
     else
-        nomArchivo = "vehiculos" + to_string(opc) + ".csv";
+        nomArchivo = PATH_VEHICULOS + "vehiculos" + to_string(opc) + ".csv";
 }
-#endif

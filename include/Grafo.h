@@ -11,10 +11,10 @@
 using namespace std;
 
 
-struct Aristas {
+struct AristaGrafo {
     int nodoDestino;
     float peso;
-    Aristas* sig;
+    AristaGrafo* sig;
 };
 
 
@@ -79,7 +79,7 @@ public:
 //CLASE GRAFO
 class Grafo {
 private:
-    vector<Aristas*> adj;       // lista de adyacencia
+    vector<AristaGrafo*> adj;       // lista de adyacencia
     vector<string> nombres;    // nombre de los nodos
     vector<bool> activo;       // TRUE = nodo creado
     vector<bool> auxActivo;    // True el nodo además de estar creado contiene elementos válidos
@@ -122,44 +122,44 @@ public:
     void eliminarNodo(size_t u){
         if(!existeNodo(u)) return;
 
-        //borrar Aristas salientes
-        Aristas* a = adj[u];
+        //borrar AristaGrafo salientes
+        AristaGrafo* a = adj[u];
         while(a){
-            Aristas* tmp = a;
+            AristaGrafo* tmp = a;
             a = a->sig;
             delete tmp;
         }
         adj[u] = nullptr;
 
-        //borrar Aristas entrantes
+        //borrar AristaGrafo entrantes
         for(size_t i = 0; i < adj.size(); i++){
             if(activo[i])
-                eliminarAristas(i, u);
+                eliminarAristaGrafo(i, u);
         }
         auxActivo[u] = false;
         nombres[u].clear();
         cout << "\n\t Nodo " << u << " eliminado.\n";
     }
 
-    // agregar Aristas
-    void agregarAristas(size_t u, size_t v, float w){
+    // agregar AristaGrafo
+    void agregarAristaGrafo(size_t u, size_t v, float w){
         if(!existeNodo(u) || !existeNodo(v)) return;
 
-        Aristas* nueva = new Aristas{(int)v, w, adj[u]};
+        AristaGrafo* nueva = new AristaGrafo{(int)v, w, adj[u]};
         adj[u] = nueva;
 
         if(!esDirigido){
-            Aristas* rev = new Aristas{(int)u, w, adj[v]};
+            AristaGrafo* rev = new AristaGrafo{(int)u, w, adj[v]};
             adj[v] = rev;
         }
     }
 
-    // eliminar Aristas (u, v)
-    void eliminarAristas(size_t u, size_t v){
+    // eliminar AristaGrafo (u, v)
+    void eliminarAristaGrafo(size_t u, size_t v){
         if(!existeNodo(u) || !existeNodo(v)) return;
 
-        Aristas* a = adj[u];
-        Aristas* prev = nullptr;
+        AristaGrafo* a = adj[u];
+        AristaGrafo* prev = nullptr;
 
         while(a){
             if(a->nodoDestino == (int)v){
@@ -188,11 +188,11 @@ public:
         }
     }
 
-    // verificar si existe Aristas u->v
-    bool existeAristas(size_t u, size_t v) const {
+    // verificar si existe AristaGrafo u->v
+    bool existeAristaGrafo(size_t u, size_t v) const {
         if(!existeNodo(u) || !existeNodo(v)) return false;
 
-        Aristas* a = adj[u];
+        AristaGrafo* a = adj[u];
         while(a){
             if(a->nodoDestino == (int)v)
                 return true;
@@ -211,7 +211,7 @@ public:
 
             cout << "\t " << u << " [" << nombres[u] << "] : ";
 
-            Aristas* a = adj[u];
+            AristaGrafo* a = adj[u];
             while(a){
                 if(activo[a->nodoDestino])
                     cout << " (" << a->nodoDestino << ", peso=" << a->peso << ") ";
@@ -244,7 +244,7 @@ public:
 
                 float val = INF;
 
-                Aristas* a = adj[i];
+                AristaGrafo* a = adj[i];
                 while(a){
                     if(a->nodoDestino == (int)j){
                         val = a->peso;
@@ -288,7 +288,7 @@ public:
 
             if(distU != dist[u]) continue;
 
-            Aristas* a = adj[u];
+            AristaGrafo* a = adj[u];
             while(a){
                 size_t v = a->nodoDestino;
                 float w = a->peso;
@@ -349,7 +349,7 @@ public:
             visitado[u] = true;
             cout << "-> " << u << "(" << nombres[u] << ") ";
 
-            for (Aristas* a = adj[u]; a; a = a->sig) {
+            for (AristaGrafo* a = adj[u]; a; a = a->sig) {
                 size_t v = a->nodoDestino;
                 if (existeNodo(v) && !visitado[v]) {
                     dfsRec(v);
@@ -386,7 +386,7 @@ public:
             size_t u = cola[frente++];
             cout <<  "-> " << u << "(" << nombres[u] << ") ";
 
-            for (Aristas* a = adj[u]; a; a = a->sig) {
+            for (AristaGrafo* a = adj[u]; a; a = a->sig) {
                 size_t v = a->nodoDestino;
                 if (existeNodo(v) && !visitado[v]) {
                     visitado[v] = true;

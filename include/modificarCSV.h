@@ -11,7 +11,7 @@ void agregarAristas(const HashRed&, vector<Arista>&);
 void eliminarNodos(HashRed&, vector<Arista>&);
 void eliminarAristas(vector<Arista>&);
 
-//Función auxiliar para saber a qué función llamar y solo usar los atributos necesario
+//Función auxiliar para saber a qué función llamar y solo usar los atributos necesarios
 void distribuirRed(const string nomArchivo, bool nueva, bool saveAs, string accion, string objeto){
     HashRed nNodos;
     vector <Arista> aristas;
@@ -274,7 +274,7 @@ void guardarRed(){
     HashRed nNodos;
     vector<Arista> aristas;
     int cont = contRed(true);
-    string nomArchivo = "red" + to_string(cont) + ".csv";
+    string nomArchivo = PATH_REDES + "red" + to_string(cont) + ".csv";
 
     //Preguntar por los nodos
     agregarNodos(nNodos, true);
@@ -320,7 +320,7 @@ void guardarRed(HashRed& nNodos, vector <Arista>& aristas){
     fstream red;
     
     int cont = contRed(true);
-    string nomArchivo = "red" + to_string(cont) + ".csv";
+    string nomArchivo = PATH_REDES + "red" + to_string(cont) + ".csv";
 
     //Abrir el archivo de la red
     red.open(nomArchivo, ios::out);
@@ -636,7 +636,7 @@ void crearNuevoVehiculos(){
         crearContVehiculos();
     }
     int cont = contVehiculos(true);
-    string nomArchivo = "vehiculos" + to_string(cont) + ".csv";
+    string nomArchivo = PATH_VEHICULOS + "vehiculos" + to_string(cont) + ".csv";
 
     HashVehiculos hashVh;
     vector <Vehiculo> vehiculos;

@@ -5,7 +5,7 @@
 #include "TablasHash.h"
 using namespace std;
 
-/* LEER ARCHIVO .CSV DE RED DE NODOS*/
+/* Cargar la información de la red vial desde un archivo CSV */
 void csvRed(const string& archivo, HashRed& hashRed, vector<Arista>& aristas){
     fstream red(archivo);
     if(!red){
@@ -44,9 +44,11 @@ void csvRed(const string& archivo, HashRed& hashRed, vector<Arista>& aristas){
             aristas.push_back(a);
         }
     }
+
+    red.close();
 }
 
-/* LEER ARCHIVO .CSV DE VEHICULOS */
+/* Cargar la información de vehículos desde un archivo CSV */
 
 void csvVehiculos(const string& archivo, HashVehiculos& hashVe, vector<Vehiculo>& vehiculos){
     fstream vehic(archivo);
@@ -62,7 +64,7 @@ void csvVehiculos(const string& archivo, HashVehiculos& hashVe, vector<Vehiculo>
 
         stringstream ss(linea);
         string tipoRegistro;
-        getline(ss, tipoRegistro, ';'); // Saca la V del principio para que no errores
+        getline(ss, tipoRegistro, ';'); // Saca la V del principio para que no haya errores
 
         if(tipoRegistro != "V") continue;
 
@@ -85,5 +87,6 @@ void csvVehiculos(const string& archivo, HashVehiculos& hashVe, vector<Vehiculo>
             vehiculos.push_back(v);
             hashVe.insertar(Vehiculo(v));
     }
+    vehic.close();
 }
 #endif

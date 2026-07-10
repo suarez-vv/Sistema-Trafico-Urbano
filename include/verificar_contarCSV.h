@@ -1,6 +1,7 @@
 #ifndef VER_CONT_H
 #define VER_CONT_H
 #include "leerCSV.h"
+#include "paths.h"
 using namespace std;
 
 //////// Lógica para el conteo de los archivos .csv ////////////////////
@@ -8,7 +9,7 @@ using namespace std;
 /* PARA LA RED DE NODOS */
 int crearContRed(){ //Creacion del archivo contador para la cantidad de archivos de Red
     fstream cRed;
-    cRed.open("ContRed.dat", ios::binary|ios::out);
+    cRed.open(PATH_COUNTERS + "ContRed.dat", ios::binary|ios::out);
     if(!cRed){
         cout << "\n\t El archivo no se creo correctamente.";
         cin.get();
@@ -21,15 +22,17 @@ int crearContRed(){ //Creacion del archivo contador para la cantidad de archivos
 }
 
 bool verificarCRed(){ //Verificacion de existencia del archivo contador de archivos de red
-    fstream cRed("ContRed.dat", ios::binary|ios::in);
-    if(!cRed) return false;
+    fstream cRed(PATH_COUNTERS + "ContRed.dat", ios::binary|ios::in);
+    if(!cRed){
+        return false;
+    }
     return true;
 }
 
 int contRed(bool aumentar){ //Leemos en que numero de archivo en que vamos y aumentamos el contador
     fstream cRed;
     int cont = 0;
-    cRed.open("ContRed.dat", ios::binary|ios::in|ios::out);
+    cRed.open(PATH_COUNTERS + "ContRed.dat", ios::binary|ios::in|ios::out);
     if(!cRed){
         cout << "\n\t El archivo no se abrio correctamente.";
         cin.get();
@@ -46,16 +49,16 @@ int contRed(bool aumentar){ //Leemos en que numero de archivo en que vamos y aum
         cont++;
         cRed.seekp(0, ios::end);
         cRed.write(reinterpret_cast<char*>(&cont), sizeof(int));
-        cRed.close();
     }
 
+    cRed.close();
     return cont;
 }
 
 /* PARA LOS VEHICULOS */
 int crearContVehiculos(){
     fstream cVehiculos;
-    cVehiculos.open("ContVehiculos.dat", ios::binary|ios::out);
+    cVehiculos.open(PATH_COUNTERS + "ContVehiculos.dat", ios::binary|ios::out);
     if(!cVehiculos){
         cout << "\n\t El archivo no se creo correctamente.";
         cin.get();
@@ -68,15 +71,17 @@ int crearContVehiculos(){
 }
 
 bool verificarCVehiculos(){
-    fstream cVehiculos("ContVehiculos.dat", ios::binary|ios::in);
-    if(!cVehiculos) return false;
+    fstream cVehiculos(PATH_COUNTERS + "ContVehiculos.dat", ios::binary|ios::in);
+    if(!cVehiculos){
+        return false;
+    }
     return true;
 }
 
 int contVehiculos(bool aumentar){
     fstream cVehiculos;
     int cont = 0;
-    cVehiculos.open("ContVehiculos.dat", ios::binary|ios::in|ios::out);
+    cVehiculos.open(PATH_COUNTERS + "ContVehiculos.dat", ios::binary|ios::in|ios::out);
     if(!cVehiculos){
         cout << "\n\t El archivo no se abrio correctamente.";
         cin.get();
@@ -93,9 +98,9 @@ int contVehiculos(bool aumentar){
         cont++;
         cVehiculos.seekp(0, ios::end);
         cVehiculos.write(reinterpret_cast<char*>(&cont), sizeof(int));
-        cVehiculos.close();
     }
 
+    cVehiculos.close();
     return cont;
 }
 #endif

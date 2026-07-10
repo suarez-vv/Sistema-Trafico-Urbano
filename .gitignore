@@ -1,0 +1,23 @@
+#Archivos Ejecutables
+*.exe
+*.out
+
+#Carpeta(s) de Binarios y Salida
+output/
+bin/
+
+#Archivos objeto
+*.o
+*.obj
+
+#Archivo Temporales
+*.log
+*.tmp
+
+#VS code
+.vscode/
+
+#Archivos del sistema
+.DS_store
+Thumbs.db
+

@@ -1,5 +1,5 @@
-#ifndef TABLAS_HASH
-#define TABLAS_HASH
+#ifndef TABLAS_HASH_H
+#define TABLAS_HASH_H
 #include <iostream>
 #include <vector>
 #include <list>
@@ -94,12 +94,11 @@ class HashRed{
             return nodos;
         }
 
-        bool isFull(){
-            if(numElementos == capacidad) return true;
-            return false;
+        bool isFull() const{
+            return numElementos == capacidad;
         }
 
-        size_t getCap(){
+        size_t getCap() const{
             return capacidad;
         }
 
@@ -178,12 +177,11 @@ class HashVehiculos{
             return false;
         }
 
-        bool isFull(){
-            if(numElementos == capacidad) return true;
-            return false;
+        bool isFull() const{ 
+            return numElementos == capacidad;
         }
 
-        size_t getNumElementos(){
+        size_t getNumElementos() const{
             return numElementos;
         }
 };
