@@ -1,5 +1,6 @@
-//Para ejecución en Windows quitar el comentario a la siguiente linea
-//#include <windows.h>
+#ifdef _WIN32
+    #include <windows.h>
+#endif
 #include <ctime>
 #include <limits>
 #include <chrono>
@@ -21,8 +22,9 @@ void nombreArchivoRed(string&, bool&, const string);
 void nombreArchivoVehiculos(string&);
 
 int main(){
-    //Para ejecución en Windows quitar el comentario a la siguiente linea (Si se desean impresiones con UTF-8)
-    //SetConsoleOutputCP(CP_UTF8);
+    #ifdef _WIN32
+        SetConsoleOutputCP(CP_UTF8);
+    #endif
     crearCarpetasNecesarias();
     HashRed hashRed(12);
     vector<Arista> aristas;

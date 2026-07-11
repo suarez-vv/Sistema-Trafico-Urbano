@@ -20,6 +20,7 @@ Desarrollar una herramienta capaz de representar una red urbana mediante grafos 
 * Depth-First Search (DFS)
 * CSV
 * Archivos Binarios
+* Programación multiplataforma
 
 ## Funcionalidades
 
@@ -54,18 +55,35 @@ Desarrollar una herramienta capaz de representar una red urbana mediante grafos 
 
 ## Estructura del proyecto
 
-* `main.cpp` - Punto de entrada del programa y gestión de los menús principales.
-* `Grafo.h` - Implementación del grafo dinámico, recorridos BFS y DFS, matriz y lista de adyacencia, así como el algoritmo de Dijkstra.
-* `TablasHash.h` - Implementación de las tablas hash utilizadas para la gestión de nodos y vehículos.
-* `leerCSV.h` - Funciones para la lectura de redes y vehículos desde archivos CSV.
-* `modificarCSV.h` - Funciones para la creación, modificación y administración de redes y vehículos.
-* `verificar_contarCSV.h` - Gestión de contadores y verificación de archivos auxiliares.
-* `paths.h` - Definición de rutas y creación automática de directorios necesarios para el proyecto.
-* `build.sh` - Script de compilación para entornos Linux.
+```text
+Sistema-Trafico-Urbano/
+│
+├── docs/
+│   └── Documentación-Técnica-Sistema-Tráfico-Urbano.pdf
+│
+├── include/
+│   ├── Grafo.h                -> Implementación del grafo y algoritmos de recorrido
+│   ├── TablasHash.h           -> Gestión de vehículos y nodos mediante tablas hash
+│   ├── leerCSV.h              -> Lectura de redes y vehículos desde archivos CSV
+│   ├── modificarCSV.h         -> Creación y modificación de archivos CSV
+│   ├── verificar_contarCSV.h  -> Verificación y contadores del sistema
+│   └── paths.h                -> Rutas centralizadas y creación de directorios
+│
+├── src/
+│   └── main.cpp               -> Punto de entrada principal del sistema
+│
+├── build.sh                   -> Compilación en Linux
+├── build.bat                  -> Compilación en Windows
+│
+├── README.md
+└── .gitignore
+```
 
 ## Compilación
 
-El proyecto incluye un script de compilación.
+El proyecto incluye scripts de compilación para Linux y Windows.
+
+### Linux
 
 Dar permisos de ejecución:
 
@@ -79,22 +97,46 @@ Compilar:
 ./build.sh
 ```
 
-El ejecutable será generado en:
+Se generará:
 
 ```text
 bin/sistema_trafico
 ```
 
+### Windows
+
+Compilar:
+
+```cmd
+.\build.bat
+```
+
+Se generará:
+
+```text
+bin\sistema_trafico.exe
+```
+
 ## Ejecución
 
-Una vez compilado:
+### Linux
 
 ```bash
 ./bin/sistema_trafico
 ```
 
+### Windows
+
+```bash
+.\bin\sistema_trafico.exe
+```
+
 ## Archivos de datos
-La información utilizada por el sistema se encuentra organizada en la carpeta `data`.
+La información utilizada por el sistema se encuentra organizada en la carpeta:
+
+```text
+data/
+```
 
 * `redes/` - Contiene los archivos CSV que representan las redes de tráfico y la información de nodos y aristas.
 * `vehiculos/` - Contiene los archivos CSV con los registros de vehículos y sus datos asociados.
@@ -103,16 +145,13 @@ La información utilizada por el sistema se encuentra organizada en la carpeta `
 ## Compatibilidad
 
 El proyecto fue desarrollado originalmente en Windows y posteriormente adaptado para Linux.
-Para Linux se utilizan rutas relativas y la biblioteca estándar de C++. 
 
-Si se desea ejecutar bajo Windows, pueden habilitarse nuevamente las siguientes líneas dentro de `main.cpp`:
+La compatibilidad multiplataforma se implementó mediante:
 
-```cpp
-#include <windows.h>
-SetConsoleOutputCP(CP_UTF8);
-```
-
-Estas líneas permiten una mejor visualización de caracteres UTF-8 en la consola de Windows.
+* Uso condicional de `_WIN32`.
+* Compilación mediante scripts específicos para Linux y Windows.
+* Uso de rutas relativas para el acceso a archivos.
+* Configuración de UTF-8 en consola mediante `SetConsoleOutputCP()` cuando se ejecuta bajo Windows.
 
 ## Conceptos aplicados
 
@@ -132,10 +171,14 @@ Durante el desarrollo del proyecto se aplicaron conocimientos en:
 
 La documentación técnica del proyecto se encuentra disponible en:
 
-* `docs/Reporte-Sistema-Trafico-Urbano.pdf`
+* `docs/Documentación-Técnica-Sistema-Trafico-Urbano.pdf`
 
 ## Autores
 * Suárez Vega, Vladimir
 * Zermeño Ojeda, Paola Sarahi
 * Zermeño Ojeda, Diana Valeria
 * Medina Lara, Diego Sebastián
+
+## Nota
+
+Proyecto desarrollado originalmente con fines académicos y educativos para practicar y fortalecer  conocimientos relacionados con estructuras de datos, teoría de grafos y Programación Orientada a Objetos en C++.

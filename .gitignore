@@ -3,7 +3,6 @@
 *.out
 
 #Carpeta(s) de Binarios y Salida
-output/
 bin/
 
 #Archivos objeto
@@ -13,6 +12,8 @@ bin/
 #Archivo Temporales
 *.log
 *.tmp
+*.swp
+*.g*h
 
 #VS code
 .vscode/
