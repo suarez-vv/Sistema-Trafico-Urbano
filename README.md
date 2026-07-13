@@ -182,3 +182,8 @@ La documentación técnica del proyecto se encuentra disponible en:
 ## Nota
 
 Proyecto desarrollado originalmente con fines académicos y educativos para practicar y fortalecer  conocimientos relacionados con estructuras de datos, teoría de grafos y Programación Orientada a Objetos en C++.
+
+### Historial del Proyecto
+
+- Desarrollo original: **noviembre - diciembre de 2025**.
+- Adaptación multiplataforma (Linux/Windows): **julio de 2026**.
