@@ -2,11 +2,11 @@
 
 Sistema de gestión de tráfico urbano desarrollado en **C++** que modela redes viales mediante grafos dinámicos y permite la administración de vehículos utilizando tablas hash.
 
-El proyecto implementa algoritmos clásicos de teoría de grafos como **Dijkstra, BFS y DFS**, además de mecanismos de persistencia mediante archivos *CSV* para la gestión de redes y vehículos.
+El proyecto implementa algoritmos clásicos de teoría de grafos como **Dijkstra, BFS y DFS**, y permite construir y administrar redes de transporte representadas mediante grafos dirigidos y ponderados, donde cada nodo corresponde a una intersección y cada arista representa una conexión vial entre ellas. Además, incorpora mecanismos para la gestión de vehículos, el almacenamiento persistente de información y el análisis de recorridos dentro de la red. 
 
-## Objetivo
+La aplicación integra estructuras de datos y algoritmos clásicos para resolver problemas relacionados con movilidad urbana, incluyendo búsqueda de rutas, recorridos sobre grafos, representación de redes mediante listas y matrices de adyacencia, así como simulación de recorridos utilizando caminos mínimos.
 
-Desarrollar una herramienta capaz de representar una red urbana mediante grafos dirigidos y ponderados, permitiendo la gestión de nodos, rutas y vehículos, así como el análisis de recorridos y caminos mínimos dentro de la infraestructura vial.
+Para el almacenamiento permanente de la información se utilizan archivos *CSV* y archivos binarios, permitiendo crear, modificar y recuperar redes de tráfico y registros de vehículos sin perder información entre ejecuciones.
 
 ## Tecnologías utilizadas
 
