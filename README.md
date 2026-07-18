@@ -8,6 +8,11 @@ La aplicación integra estructuras de datos y algoritmos clásicos para resolver
 
 Para el almacenamiento permanente de la información se utilizan archivos *CSV* y archivos binarios, permitiendo crear, modificar y recuperar redes de tráfico y registros de vehículos sin perder información entre ejecuciones.
 
+<p align="center">
+    <img src="screenshots/menu_principal.png" alt="menu_principal" width="50%"><br>
+    <em>Figura 1. Menú principal del sistema de gestión de tráfico urbano.</em><br>
+</p>
+
 ## Tecnologías utilizadas
 
 * C++
@@ -38,12 +43,28 @@ Para el almacenamiento permanente de la información se utilizan archivos *CSV* 
 * Matriz de adyacencia.
 * Grafos dirigidos y ponderados.
 
+<p align="center">
+    <img src="screenshots/lista_adyacencia.png" alt="lista_adyacencia" width="50%"><br>
+    <em>Figura 2. Representación de una red vial mediante lista de adyacencia.</em><br><br>
+</p>
+
+<p align="center">
+    <img src="screenshots/matriz_adyacencia.png" alt="matriz_adyacencia" width="50%"><br>
+    <em>Figura 3. Representación de una red vial mediante matriz de adyacencia.</em><br>
+</p>
+
+
 ### Algoritmos Implementados
 
 * Dijkstra para cálculo de caminos mínimos.
 * Breadth-First Search (BFS)
 * Depth-First Search (DFS)
 * MinHeap personalizado para optimizar Dijkstra.
+
+<p align="center">
+    <img src="screenshots/dijkstra.png" alt="dijkstra" width="50%"><br>
+    <em>Figura 4. Cálculo de ruta mínima utilizando el algoritmo de Dijkstra.</em><br>
+</p>
 
 ### Gestión de Vehículos
 
@@ -53,10 +74,22 @@ Para el almacenamiento permanente de la información se utilizan archivos *CSV* 
 * Eliminación de vehículos.
 * Simulación de recorridos utilizando Dijkstra.
 
+<p align="center">
+    <img src="screenshots/vehiculos_cargados.png" alt="vehiculos_cargados" width="50%"><br>
+    <em>Figura 5. Consulta de vehículos registrados y almacenados en el sistema.</em><br>
+</p>
+
 ## Estructura del proyecto
 
 ```text
 Sistema-Trafico-Urbano/
+│
+├── screenshots/
+│   ├── menu_principal.png
+│   ├── lista_adyacencia.png
+│   ├── matriz_adyacencia.png
+│   ├── recorrido_dijkstra.png
+│   └── vehiculos_cargados.png
 │
 ├── docs/
 │   └── Documentación-Técnica-Sistema-Tráfico-Urbano.pdf
